@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow Pro</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">✦ TaskFlow<span> Pro</span></div>
+
+        <p class="menu-title">MENU</p>
+
+        <nav>
+            <button class="nav-item active" data-status="all">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-item" data-status="pending">
+                <span>◷</span> Pending Tasks
+            </button>
+
+            <button class="nav-item" data-status="completed">
+                <span>✓</span> Completed Tasks
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button id="themeToggle" class="theme-button">
+                ☾ Toggle Dark Mode
+            </button>
+            <p>TaskFlow Pro v2.0</p>
+        </div>
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>My Dashboard</h1>
+                <p>Manage your productivity and stay organized.</p>
+            </div>
+
+            <div class="date-display" id="todayDate"></div>
+        </header>
+
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card purple">
+                <div class="stat-icon">▦</div>
+                <p>Total Tasks</p>
+                <h2 id="totalTasks">0</h2>
+                <small>All your tasks</small>
+            </div>
+
+            <div class="stat-card orange">
+                <div class="stat-icon">◷</div>
+                <p>Pending Tasks</p>
+                <h2 id="pendingTasks">0</h2>
+                <small>Waiting to be done</small>
+            </div>
+
+            <div class="stat-card green">
+                <div class="stat-icon">✓</div>
+                <p>Completed</p>
+                <h2 id="completedTasks">0</h2>
+                <small>Successfully finished</small>
+            </div>
+
+            <div class="stat-card red">
+                <div class="stat-icon">!</div>
+                <p>Overdue</p>
+                <h2 id="overdueTasks">0</h2>
+                <small>Past due date</small>
+            </div>
+
+        </section>
+
+
+        <!-- Progress -->
+        <section class="progress-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Overall Progress</h2>
+                    <p>Keep moving towards your goals.</p>
+                </div>
+
+                <h2 id="progressPercent">0%</h2>
+            </div>
+
+            <div class="progress-track">
+                <div id="progressBar"></div>
+            </div>
+        </section>
+
+
+        <!-- Task Form -->
+        <section class="task-form-section">
+            <h2 id="formHeading">Create a New Task</h2>
+
+            <form id="taskForm">
+
+                <input type="hidden" id="editId">
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Task Title</label>
+                        <input
+                            type="text"
+                            id="taskTitle"
+                            placeholder="What do you need to accomplish?"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="taskCategory">
+                            <option value="Study">Study</option>
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="taskPriority">
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="date" id="taskDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Due Time</label>
+                        <input type="time" id="taskTime">
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submitButton">
+                        + Add Task
+                    </button>
+
+                    <button type="button" id="cancelEdit" hidden>
+                        Cancel Edit
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+
+        <!-- Task List -->
+        <section class="tasks-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Tasks</h2>
+                    <p>Stay on top of your daily activities.</p>
+                </div>
+            </div>
+
+            <div class="toolbar">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search tasks..."
+                >
+
+                <select id="priorityFilter">
+                    <option value="all">All Priorities</option>
+                    <option value="High">High Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="Low">Low Priority</option>
+                </select>
+
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="Study">Study</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <select id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="date">Due Date</option>
+                </select>
+
+            </div>
+
+            <div id="taskList"></div>
+
+            <div id="emptyMessage">
+                <div class="empty-icon">✦</div>
+                <h3>No tasks found</h3>
+                <p>Add a task or change your filters.</p>
+            </div>
+
+        </section>
+
+        <footer>
+            TaskFlow Pro © 2026 · Stay productive.
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="../static/script.js"></script>
+</body>
+</html>

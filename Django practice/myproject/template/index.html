@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Task Manager</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header>
+            <h1>TaskFlow <span>✦</span></h1>
+            <p>Organize your day, one task at a time.</p>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card">
+                <h2 id="totalTasks">0</h2>
+                <p>Total Tasks</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="pendingTasks">0</h2>
+                <p>Pending</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="completedTasks">0</h2>
+                <p>Completed</p>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <h2>My Tasks</h2>
+
+            <form id="taskForm">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What needs to be done?"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">+ Add Task</button>
+            </form>
+
+            <nav class="filters">
+                <button class="filter active" data-filter="all">All</button>
+                <button class="filter" data-filter="pending">Pending</button>
+                <button class="filter" data-filter="completed">Completed</button>
+            </nav>
+
+            <div id="taskList"></div>
+
+            <p id="emptyMessage">No tasks yet. Add your first task! ✨</p>
+        </section>
+
+        <footer>
+            Made with ❤️ using HTML, CSS & JavaScript
+        </footer>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
